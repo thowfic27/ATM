@@ -1,0 +1,65 @@
+{% extends "atm/base.html" %}
+
+{% block title %}Deposit · PyBank ATM{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+                    <div>
+                        <h1 class="h4 fw-bold mb-1">
+                            <i class="bi bi-plus-circle text-success me-1"></i>Deposit Money
+                        </h1>
+                        <p class="text-muted mb-0">Add funds to account {{ request.session.account_number }}.</p>
+                    </div>
+                    {% if balance is not None %}
+                        <span class="badge rounded-pill bg-body-tertiary text-dark border">
+                            Balance: Rs. {{ balance|floatformat:2 }}
+                        </span>
+                    {% endif %}
+                </div>
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            <div><i class="bi bi-x-circle me-1"></i>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post" novalidate data-confirm="Deposit this amount to your account?">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label class="form-label" for="{{ form.amount.id_for_label }}">{{ form.amount.label }}</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text">Rs.</span>
+                            {{ form.amount }}
+                        </div>
+                        {% for error in form.amount.errors %}
+                            <div class="text-danger small mt-1">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <label class="form-label small text-muted">Quick amounts</label>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-quick-amount="100">+ Rs. 100</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-quick-amount="500">+ Rs. 500</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-quick-amount="1000">+ Rs. 1,000</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-quick-amount="5000">+ Rs. 5,000</button>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'atm:dashboard' %}" class="btn btn-outline-secondary px-4">Cancel</a>
+                        <button type="submit" class="btn btn-success flex-grow-1 py-2 fw-semibold">
+                            <i class="bi bi-cash-coin me-1"></i>Deposit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

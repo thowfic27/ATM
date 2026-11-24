@@ -1,0 +1,3 @@
+# Web frontend requirements (the CLI only needs mysql-connector-python)
+Django>=5.0,<6.0
+mysql-connector-python>=8.0

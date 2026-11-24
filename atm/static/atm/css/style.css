@@ -1,0 +1,166 @@
+/* ============================================================
+   PyBank ATM — custom styles on top of Bootstrap 5
+   ============================================================ */
+
+:root {
+    --atm-navy: #14213d;
+    --atm-blue: #1d3557;
+    --atm-ocean: #2a6f97;
+}
+
+/* ---- Page background ---- */
+body.bg-app {
+    background:
+        radial-gradient(1200px 500px at 85% -10%, rgba(42, 111, 151, 0.14), transparent 60%),
+        radial-gradient(900px 400px at -10% 110%, rgba(26, 188, 156, 0.10), transparent 60%),
+        linear-gradient(160deg, #f0f4fa 0%, #eaf1f6 55%, #eef7f2 100%);
+    background-attachment: fixed;
+}
+
+/* ---- Navbar ---- */
+.navbar.bg-atm {
+    background: linear-gradient(90deg, var(--atm-navy) 0%, var(--atm-blue) 55%, var(--atm-ocean) 100%);
+}
+
+.navbar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #fff;
+}
+
+.navbar .nav-link.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* ---- Hero section (home page) ---- */
+.hero {
+    background: linear-gradient(135deg, var(--atm-navy) 0%, var(--atm-blue) 45%, var(--atm-ocean) 100%);
+    box-shadow: 0 1rem 2.5rem rgba(20, 33, 61, 0.35);
+}
+
+/* ---- The ATM / debit card visual ---- */
+.atm-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1b263b 0%, #2c3e64 55%, #3a506b 100%);
+    border-radius: 1.25rem;
+    box-shadow: 0 1rem 2.5rem rgba(27, 38, 59, 0.45);
+    min-height: 220px;
+}
+
+/* subtle shine in the corner */
+.atm-card::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -110px;
+    width: 280px;
+    height: 280px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.card-chip {
+    width: 48px;
+    height: 36px;
+    background: linear-gradient(135deg, #f3d27a 0%, #c9a227 100%);
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.card-number {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.5rem;
+    letter-spacing: 0.18em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* ---- Feature / action cards ---- */
+.feature-card {
+    border: 0;
+    border-radius: 1rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.75rem 1.5rem rgba(20, 33, 61, 0.16) !important;
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--atm-ocean), #3a86ff);
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(42, 111, 151, 0.35);
+}
+
+.feature-icon-success { background: linear-gradient(135deg, #2a9d8f, #40916c); box-shadow: 0 0.5rem 1rem rgba(42, 157, 143, 0.35); }
+.feature-icon-danger  { background: linear-gradient(135deg, #e63946, #d62828); box-shadow: 0 0.5rem 1rem rgba(230, 57, 70, 0.35); }
+.feature-icon-dark    { background: linear-gradient(135deg, #343a40, #495057); box-shadow: 0 0.5rem 1rem rgba(52, 58, 64, 0.35); }
+
+/* ---- Auth (login / register) cards ---- */
+.auth-card {
+    border: 0;
+    border-radius: 1rem;
+}
+
+/* ---- Balance number ---- */
+.balance-value {
+    font-variant-numeric: tabular-nums;
+    color: var(--atm-blue);
+}
+
+/* ---- Form polish ---- */
+.form-control:focus,
+.form-control-lg:focus {
+    border-color: var(--atm-ocean);
+    box-shadow: 0 0 0 0.2rem rgba(42, 111, 151, 0.18);
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+    background: linear-gradient(135deg, var(--atm-blue), var(--atm-ocean));
+    border: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: linear-gradient(135deg, var(--atm-navy), var(--atm-blue));
+}
+
+/* ---- Alerts ---- */
+.alert {
+    border-radius: 0.75rem;
+}
+
+/* ---- Tables ---- */
+.table > :not(caption) > * > * {
+    padding: 0.9rem 0.75rem;
+}
+
+/* ---- Small screens ---- */
+@media (max-width: 575.98px) {
+    .card-number {
+        font-size: 1.15rem;
+    }
+
+    .display-5 {
+        font-size: calc(1.3rem + 1.5vw);
+    }
+}
